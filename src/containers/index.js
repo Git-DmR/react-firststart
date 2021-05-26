@@ -5,12 +5,12 @@ class RegisterContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstTextFieldDisabledStatus: true,
+      displayForm: false,
       currentValue: 0,
     };
     this.handleIncrement = this.handleIncrement.bind(this);
     this.handleDecrement = this.handleDecrement.bind(this);
-    this.handleOnChange = this.handleOnChange.bind(this);
+    this.changeFormStatus = this.changeFormStatus.bind(this);
   }
 
   componentDidMount() {
@@ -29,21 +29,20 @@ class RegisterContainer extends React.Component {
     }));
   }
 
-  handleOnChange() {
+  changeFormStatus() {
     this.setState((state) => ({
-      firstTextFieldDisabledStatus: false,
+      displayForm: !this.state.displayForm,
     }));
   }
 
   render() {
-    let firstValue = "QQ";
-
     return (
       <Register
         handleIncrement={this.handleIncrement}
         handleDecrement={this.handleDecrement}
+        handleDisplayFormStatus={this.changeFormStatus}
+        displayForm={this.state.displayForm}
         currentValue={this.state.currentValue}
-        firstValueForTextField={firstValue}
       />
     );
   }
