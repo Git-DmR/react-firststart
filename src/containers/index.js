@@ -2,18 +2,54 @@ import React from "react";
 import Register from "../components";
 
 class RegisterContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstTextFieldDisabledStatus: true,
+      currentValue: 0,
+    };
+    this.handleIncrement = this.handleIncrement.bind(this);
+    this.handleDecrement = this.handleDecrement.bind(this);
+    this.handleOnChange = this.handleOnChange.bind(this);
+  }
+
+  componentDidMount() {
+    console.log("didMount:", this);
+  }
+
+  handleIncrement() {
+    this.setState((state) => ({
+      currentValue: this.state.currentValue + 1,
+    }));
+  }
+
+  handleDecrement() {
+    this.setState((state) => ({
+      currentValue: this.state.currentValue - 1,
+    }));
+  }
+
+  handleOnChange() {
+    this.setState((state) => ({
+      firstTextFieldDisabledStatus: false,
+    }));
+  }
+
   render() {
     let firstValue = "QQ";
-    let disabledStatus;
 
-    const onChangeUser = (event) => {
-      console.log(event.target.value);
-      const value = event.target.value;
-      disabledStatus = value === "Artem";
-      console.log("new disabledStatus is ", disabledStatus);
-    };
+    return (
+      <Register
+        handleIncrement={this.handleIncrement}
+        handleDecrement={this.handleDecrement}
+        currentValue={this.state.currentValue}
+        firstValueForTextField={firstValue}
+      />
+    );
+  }
 
-    return <Register firstValueForTextField={firstValue} onChangeUser={onChangeUser} />;
+  componentWillUnmount() {
+    console.log("willUnmount");
   }
 }
 
