@@ -4,11 +4,12 @@ import Register from "../components";
 class RegisterContainer extends React.Component {
   render() {
     let firstValue = "QQ";
+    let disabledStatus;
 
     const onChangeUser = (event) => {
       console.log(event.target.value);
       const value = event.target.value;
-      let disabledStatus = value === "Artem";
+      disabledStatus = value === "Artem";
       console.log("new disabledStatus is ", disabledStatus);
     };
 
