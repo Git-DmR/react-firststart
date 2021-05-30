@@ -1,4 +1,4 @@
-import RegisterContainer from "../src/containers";
+import RegisterContainer from "../src/containers/register.js";
 import "./App.css";
 
 function App() {

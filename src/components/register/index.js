@@ -8,6 +8,7 @@ const Register = ({
   handleDecrement,
   currentValue,
   disabledStatus,
+  elementId,
 }) => {
   console.log({ disabledStatus });
   console.log();
@@ -21,10 +22,14 @@ const Register = ({
         </form>
       )}
       <div>
-        <div>{currentValue}</div>
-        <button onClick={handleIncrement}>+</button>
-        <button onClick={handleDecrement}>-</button>
-        <button onClick={handleDisplayFormStatus}>Change</button>
+        <div>
+          <strong>Counter_{elementId}: </strong>
+          {currentValue}
+        </div>
+        <button onClick={handleIncrement}>Increment.</button>
+        <button onClick={handleDecrement}>Decrement.</button>
+        <button onClick={handleDisplayFormStatus}>Change visibility.</button>
+        <button onClick={handleIncrement}>Add.</button>
       </div>
     </div>
   );
