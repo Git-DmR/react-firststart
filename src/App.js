@@ -1,9 +1,11 @@
 import "./App.css";
-import RegisterContainer from "../src/containers/RegisterContainer.js";
+// import CheckCounterContainer from "../src/containers/CheckCounterContainer.js";
+import RegisterContainer from "../src/containers/RegisterContainer";
 
 function App() {
   return (
     <div className="App">
+      {/* <CheckCounterContainer /> */}
       <RegisterContainer />
     </div>
   );

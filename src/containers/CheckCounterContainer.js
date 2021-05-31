@@ -1,5 +1,5 @@
 import React from "react";
-import Counter from "../components/counter/index.js";
+import Counter from "../components/counter";
 
 class CheckCounterContainer extends React.Component {
   constructor(props) {
@@ -8,42 +8,42 @@ class CheckCounterContainer extends React.Component {
       currentValue: 0,
       displayForm: false,
     };
-
-    this.addCounter = this.addCounter.bind(this);
-    this.removeCounter = this.removeCounter.bind(this);
+    this.handleIncrement = this.handleIncrement.bind(this);
+    this.handleDecrement = this.handleDecrement.bind(this);
+    this.changeDisplayFormStatus = this.changeDisplayFormStatus.bind(this);
   }
 
-  addCounter() {
-    this.setState((state) => ({
-      numberOfCounters: this.state.numberOfCounters + 1,
-    }));
+  handleIncrement() {
+    console.log("increment");
+    this.setState({
+      currentValue: this.state.currentValue + 1,
+    });
   }
 
-  removeCounter() {
-    if (this.state.numberOfCounters) {
-      this.setState((state) => ({
-        numberOfCounters: this.state.numberOfCounters - 1,
-      }));
-    }
+  handleDecrement() {
+    console.log("decrement");
+    this.setState({
+      currentValue: this.state.currentValue - 1,
+    });
+  }
+
+  changeDisplayFormStatus() {
+    this.setState({
+      displayForm: !this.state.displayForm,
+    });
   }
 
   render() {
-    const allCounters = [];
-    for (var i = 0; i < this.state.numberOfCounters; i += 1) {
-      allCounters.push(<Counter key={i} number={i} />);
-    }
-
-    console.log("allCounters", allCounters, allCounters.length);
-
     return (
-      <Register
-        numberOfCounters={this.state.numberOfCounters}
-        addCounter={this.addCounter}
-        removeCounter={this.removeCounter}
-        allCounters={this.allCounters}
-      ></Register>
+      <Counter
+        handleIncrement={this.handleIncrement}
+        handleDecrement={this.handleDecrement}
+        changeDisplayFormStatus={this.changeDisplayFormStatus}
+        currentValue={this.state.currentValue}
+        displayForm={this.state.displayForm}
+      />
     );
   }
 }
 
-export default RegisterContainer;
+export default CheckCounterContainer;
