@@ -1,72 +1,48 @@
 import React from "react";
 import Register from "../components/register/index.js";
+import Counter from "../components/counter/index.js";
 
 class RegisterContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 1,
-      displayForm: false,
-      currentValue: 0,
+      numberOfCounters: 0,
     };
-    this.handleIncrement = this.handleIncrement.bind(this);
-    this.handleDecrement = this.handleDecrement.bind(this);
-    this.changeFormStatus = this.changeFormStatus.bind(this);
-    this.idIncrement = this.idIncrement.bind(this);
-    this.idDecrement = this.idDecrement.bind(this);
+
+    this.addCounter = this.addCounter.bind(this);
+    this.removeCounter = this.removeCounter.bind(this);
   }
 
-  componentDidMount() {
-    console.log("didMount:", this);
-  }
-
-  idIncrement() {
+  addCounter() {
     this.setState((state) => ({
-      id: this.state.id + 1,
+      numberOfCounters: this.state.numberOfCounters + 1,
     }));
   }
 
-  idDecrement() {
-    this.setState((state) => ({
-      id: this.state.id - 1,
-    }));
-  }
-
-  handleIncrement() {
-    this.setState((state) => ({
-      currentValue: this.state.currentValue + 1,
-    }));
-  }
-
-  handleDecrement() {
-    this.setState((state) => ({
-      currentValue: this.state.currentValue - 1,
-    }));
-  }
-
-  handleAddCounter() {}
-
-  changeFormStatus() {
-    this.setState((state) => ({
-      displayForm: !this.state.displayForm,
-    }));
+  removeCounter() {
+    if (this.state.numberOfCounters) {
+      this.setState((state) => ({
+        numberOfCounters: this.state.numberOfCounters - 1,
+      }));
+    }
   }
 
   render() {
+    const allCounters = [];
+    for (var i = 0; i < this.state.numberOfCounters; i += 1) {
+      allCounters.push(<Counter key={i} number={i} />);
+    }
+
+    console.log("allCounters", allCounters, allCounters.length);
+
     return (
       <Register
-        handleIncrement={this.handleIncrement}
-        handleDecrement={this.handleDecrement}
-        handleDisplayFormStatus={this.changeFormStatus}
-        displayForm={this.state.displayForm}
-        currentValue={this.state.currentValue}
-        elementId={this.state.id}
-      />
+        numberOfCounters={this.state.numberOfCounters}
+        addCounter={this.addCounter}
+        removeCounter={this.removeCounter}
+        allCounters={this.allCounters}
+      ></Register>
     );
-  }
-
-  componentWillUnmount() {
-    console.log("willUnmount");
   }
 }
 
