@@ -27,8 +27,10 @@ const Register = ({ initialFormValues, onRegister }) => (
         <Grid item>
           <Field color="secondary" name="email" label="Email" type="email" component={FormikTextField} required />
         </Grid>
-        <Grid xs={12} item>
+        <Grid item>
           <Field color="secondary" name="firstName" label="First Name" component={FormikTextField} required />
+        </Grid>
+        <Grid>
           <Field color="secondary" name="secondName" label="Second Name" component={FormikTextField} required />
         </Grid>
         <Grid item>
@@ -41,7 +43,6 @@ const Register = ({ initialFormValues, onRegister }) => (
             required
           />
         </Grid>
-
         <Grid item>
           <Field
             color="secondary"
@@ -63,4 +64,5 @@ const Register = ({ initialFormValues, onRegister }) => (
 Register.propTypes = {
   initialFormValues: PropTypes.object.isRequired,
 };
+
 export default Register;

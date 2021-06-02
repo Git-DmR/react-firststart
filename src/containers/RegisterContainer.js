@@ -10,6 +10,8 @@ class RegisterContainer extends React.Component {
     };
     const OnRegisterUser = (register) => {
       console.log("Params: ", register);
+      console.log("firstName:", register.firstName);
+      console.log("firstName trim:", register.firstName.trim());
     };
 
     return <Register initialFormValues={initialFormValues} onRegister={OnRegisterUser} />;
