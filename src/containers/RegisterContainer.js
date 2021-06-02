@@ -1,5 +1,6 @@
 import React from "react";
 import Register from "../components/register";
+import Example from "../components/example";
 
 class RegisterContainer extends React.Component {
   render() {
@@ -8,11 +9,7 @@ class RegisterContainer extends React.Component {
       firstName: "",
       secondName: "",
     };
-    return (
-      <Register initialFormValues={initialFormValues}>
-        <div>Hello from props</div>
-      </Register>
-    );
+    return <Register initialFormValues={initialFormValues} example={<Example />} />;
   }
 }
 
