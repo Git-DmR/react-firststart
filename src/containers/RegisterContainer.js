@@ -8,7 +8,11 @@ class RegisterContainer extends React.Component {
       firstName: "",
       secondName: "",
     };
-    return <Register initialFormValues={initialFormValues} />;
+    return (
+      <Register initialFormValues={initialFormValues}>
+        <div>Hello from props</div>
+      </Register>
+    );
   }
 }
 
