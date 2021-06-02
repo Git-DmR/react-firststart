@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
-import { Grid } from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
 import FormikTextField from "../../modules/Formik/TextField";
 import FormikPasswordField from "../../modules/Formik/PasswordField";
 
@@ -20,8 +20,8 @@ const registerSchema = Yup.object().shape({
     }),
 });
 
-const Register = ({ initialFormValues, example }) => (
-  <Formik initialValues={initialFormValues} validationSchema={registerSchema}>
+const Register = ({ initialFormValues, onRegister }) => (
+  <Formik initialValues={initialFormValues} validationSchema={registerSchema} onSubmit={onRegister}>
     <Form autoComplete="off">
       <Grid container direction="column" spacing={1}>
         <Grid item>
@@ -52,8 +52,10 @@ const Register = ({ initialFormValues, example }) => (
             required
           />
         </Grid>
+        <Button fullWidth variant="contained" color="primary" type="submit">
+          Sign Up
+        </Button>
       </Grid>
-      {example}
     </Form>
   </Formik>
 );
