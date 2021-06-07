@@ -8,6 +8,8 @@ import FormikTextField from "../../modules/Formik/TextField";
 import FormikPasswordField from "../../modules/Formik/PasswordField";
 import styles from "./style.js";
 
+import { COUNTS } from "../../helpers/index.js";
+
 const registerSchema = Yup.object().shape({
   email: Yup.string().trim().required("Required").max(120, "Maximum length is 120 characters").email("Invalid email"),
   firstName: Yup.string().trim().max(60, "Maximum length is 60 characters"),
@@ -45,6 +47,7 @@ const Register = ({ initialFormValues, onRegister, classes }) => (
               required
             />
           </Grid>
+
           <Grid item>
             <Field
               color="secondary"
@@ -55,15 +58,20 @@ const Register = ({ initialFormValues, onRegister, classes }) => (
               required
             />
           </Grid>
-          <Button
-            className={(classes.button, classes.castomBorder)}
-            fullWidth
-            variant="contained"
-            color="primary"
-            type="submit"
-          >
-            Sign Up
-          </Button>
+          {COUNTS.map((value) => (
+            <Grid item>
+              <div>{value}</div>
+              <Button
+                className={(classes.button, classes.castomBorder)}
+                fullWidth
+                variant="contained"
+                color="primary"
+                type="submit"
+              >
+                Sign Up
+              </Button>
+            </Grid>
+          ))}
         </Grid>
       </Form>
     </Formik>
