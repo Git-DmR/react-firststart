@@ -4,7 +4,9 @@ import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import Route from "./components/route";
 import CheckCounterPage from "../src/containers/CheckCounterContainer";
 import RegisterPage from "../src/containers/RegisterContainer";
-import { root, register } from "./AppRoutes";
+import LoginPage from "../src/containers/LoginContainer";
+
+import { root, register, checkCounter } from "./AppRoutes";
 
 function App() {
   return (
@@ -12,7 +14,8 @@ function App() {
       <div className="App">
         <Switch>
           <Route path={register} component={RegisterPage} />
-          <Route path={root} component={CheckCounterPage} />
+          <Route path={checkCounter} component={CheckCounterPage} />
+          <Route path={root} component={LoginPage} />
           <Redirect to={root} />
         </Switch>
       </div>
