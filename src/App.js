@@ -5,14 +5,16 @@ import Route from "./components/route";
 import CheckCounterPage from "../src/containers/CheckCounterContainer";
 import RegisterPage from "../src/containers/RegisterContainer";
 import LoginPage from "../src/containers/LoginContainer";
+import HomePage from "../src/containers/HomeContainer";
 
-import { root, register, checkCounter } from "./AppRoutes";
+import { root, register, checkCounter, home } from "./AppRoutes";
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Switch>
+          <Route path={home} component={HomePage} />
           <Route path={register} component={RegisterPage} />
           <Route path={checkCounter} component={CheckCounterPage} />
           <Route path={root} component={LoginPage} />
