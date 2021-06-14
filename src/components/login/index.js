@@ -11,7 +11,7 @@ const loginSchema = Yup.object().shape({
   password: Yup.string(),
 });
 
-const Login = ({ onLogin, refInput, focusTextInput }) => (
+const Login = ({ testMethod, onLogin, refInput, focusTextInput }) => (
   <Formik validationSchema={loginSchema} onSubmit={onLogin}>
     <Form autoComplete="off">
       <Grid container direction="column" spacing={1}>
@@ -36,6 +36,9 @@ const Login = ({ onLogin, refInput, focusTextInput }) => (
           </Button>
           <Button fullWidth variant="contained" color="primary" onClick={focusTextInput}>
             Focus
+          </Button>
+          <Button fullWidth variant="contained" color="secondary" onClick={testMethod}>
+            TEST BUTTON
           </Button>
         </Grid>
       </Grid>
