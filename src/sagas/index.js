@@ -1,14 +1,30 @@
-import { takeEvery, all } from "redux-saga/effects";
+import { takeEvery, all, call, put } from "redux-saga/effects";
 import lodash from "lodash";
-import * as callMethods from "./callMethodsLogRegCreate";
+import * as callMethods from "./callMethods";
+import ApiService from "../API/index";
+import _ from "lodash";
 
 export function* mySagaGeneric(action) {
-  const { payload, type } = action;
-  console.log("PAYLOAD:", payload);
-  console.log("TYPE:", type);
-  const methodName = lodash.camelCase(type);
-  const request = callMethods[methodName](payload);
-  yield request;
+  const data = callMethods[_.camelCase(action.type)];
+
+  try {
+    const response = yield call(ApiService, {
+      data,
+    });
+
+    const newType = action.type.replace("_REQEST", "_SUCCESS");
+    yield put({ type: newType, response, payload: action.payload });
+  } catch (e) {
+    const errorModel = {
+      type: action.type.replace("_REQUEST", "_FAILED"),
+      payload: action.payload,
+      message: e.statusText,
+      status: e.status,
+      response: e.response,
+    };
+    console.error(errorModel);
+    yield put(errorModel);
+  }
 }
 
 export function* mySagaAll(action) {

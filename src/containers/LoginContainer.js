@@ -37,7 +37,7 @@ class LoginContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return;
+  return state;
 };
 
 const mapDispatchToProps = (dispatch) => {
