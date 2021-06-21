@@ -1,43 +1,32 @@
 import React from "react";
 import Login from "../components/login";
+
 import { connect } from "react-redux";
 import { loginRequest } from "../actions/index";
 
 class LoginContainer extends React.Component {
   constructor(props) {
     super(props);
-
-    this.textInput = React.createRef();
-    this.focusTextInput = this.focusTextInput.bind(this);
+    console.log(props, "ALL PROPS");
   }
 
-  focusTextInput() {
-    this.textInput.current.focus();
-  }
-
-  testMethod = () => {
-    console.log("Button has been pressed!!");
-    this.props.loginRequest("PAYLOAD from test method");
+  OnLoginUser = (login) => {
+    console.log(login, "LOGIN");
+    this.props.loginRequest(login);
   };
 
   render() {
-    const OnLoginUser = (login) => {
-      console.log(login, "Params");
+    const initialFormValues = {
+      email: "",
+      password: "",
     };
-
-    return (
-      <Login
-        onLogin={OnLoginUser}
-        refInput={this.textInput}
-        focusTextInput={this.focusTextInput}
-        testMethod={this.testMethod}
-      />
-    );
+    return <Login initialFormValues={initialFormValues} onLogin={this.OnLoginUser} />;
   }
 }
-
 const mapStateToProps = (state) => {
-  return state;
+  return {
+    state,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -45,5 +34,4 @@ const mapDispatchToProps = (dispatch) => {
     loginRequest: (value) => dispatch(loginRequest(value)),
   };
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
