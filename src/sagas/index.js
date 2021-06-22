@@ -14,10 +14,14 @@ export function* mySagaGeneric(action) {
     const response = yield call(ApiService, {
       data,
     });
-    console.log("Response status code:", response.status);
 
     const newType = action.type.replace("_REQEST", "_SUCCESS");
     put({ type: newType, response, payload: action.payload });
+    const successMessage = {
+      "Response status code:": response.status,
+      "Response data": response.data,
+    };
+    console.log(successMessage);
   } catch (e) {
     const errorModel = {
       type: action.type.replace("_REQUEST", "_FAILED"),
