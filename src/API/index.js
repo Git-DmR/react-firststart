@@ -7,8 +7,8 @@ function getHeaders(method, accessToken, customHeaders = {}) {
     ...customHeaders,
   };
 
-  if (_.isEqual("post", _.lowerCase(method))) {
-    headers["Accept"] = "application/json";
+  if (_.isEqual("POST", _.lowerCase(method))) {
+    headers["accept"] = "*/*";
   }
 
   // if(_.isString(accessToken)){
@@ -21,7 +21,7 @@ export default (paramsObj) => {
   const { data } = paramsObj;
   return axios({
     ...data,
-    headers: getHeaders(data.method, data.headers),
+    // headers: getHeaders(data.method, data.headers),
     url: data.url,
   })
     .then((response) => {

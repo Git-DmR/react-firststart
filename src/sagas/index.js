@@ -5,7 +5,10 @@ import ApiService from "../API/index";
 import _ from "lodash";
 
 export function* mySagaGeneric(action) {
-  const data = callMethods[_.camelCase(action.type)];
+  const data = callMethods[_.camelCase(action.type)]();
+
+  data.data.email = action.payload.email;
+  data.data.password = action.payload.password;
 
   try {
     const response = yield call(ApiService, {

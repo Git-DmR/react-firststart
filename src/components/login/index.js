@@ -14,7 +14,7 @@ import { Grid, Button, TextField } from "@material-ui/core";
 // });
 
 const Login = ({ initialFormValues, onLogin }) => {
-  console.log(onLogin, "COMPONENT METHOD");
+  // console.log(onLogin, "COMPONENT METHOD");
   return (
     <Formik initialValues={initialFormValues} onSubmit={onLogin}>
       <Form autoComplete="off">
