@@ -5,23 +5,14 @@ import ApiService from "../API/index";
 import _ from "lodash";
 
 export function* mySagaGeneric(action) {
-  const data = callMethods[_.camelCase(action.type)]();
-
-  data.data.email = action.payload.email;
-  data.data.password = action.payload.password;
-
+  const method = _.camelCase(action.type);
+  const dataPayload = callMethods[method](action.payload);
   try {
     const response = yield call(ApiService, {
-      data,
+      dataPayload,
     });
-
-    const newType = action.type.replace("_REQEST", "_SUCCESS");
-    put({ type: newType, response, payload: action.payload });
-    const successMessage = {
-      "Response status code:": response.status,
-      "Response data": response.data,
-    };
-    console.log(successMessage);
+    const newType = action.type.replace("_REQUEST", "_SUCCESS");
+    yield put({ type: newType, response, payload: action.payload });
   } catch (e) {
     const errorModel = {
       type: action.type.replace("_REQUEST", "_FAILED"),

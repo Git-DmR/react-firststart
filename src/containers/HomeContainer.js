@@ -1,8 +1,8 @@
 import React from "react";
-import GraphApp from "../components/graph";
 import ContentBlock from "../components/home";
 import MenuAppBar from "../components/navbar";
 import { RESPONSE } from "../helpers";
+import SearchAppBar from "../components/searchInput";
 
 const HomeContainer = () => {
   const opts = {
@@ -22,7 +22,8 @@ const HomeContainer = () => {
       <MenuAppBar />
       <ContentBlock content={RESPONSE} opts={opts} onReady={onReady} />
       <hr />
-      <GraphApp />
+      <SearchAppBar />
+      <hr />
     </div>
   );
 };

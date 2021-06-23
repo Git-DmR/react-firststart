@@ -18,11 +18,13 @@ function getHeaders(method, accessToken, customHeaders = {}) {
 }
 
 export default (paramsObj) => {
-  const { data } = paramsObj;
+  const { dataPayload } = paramsObj;
+  const { data } = dataPayload;
   return axios({
-    ...data,
-    // headers: getHeaders(data.method, data.headers),
-    url: data.url,
+    data: data,
+    method: dataPayload.method,
+    headers: getHeaders(dataPayload.method, dataPayload.headers),
+    url: dataPayload.url,
   })
     .then((response) => {
       return response;
@@ -30,7 +32,7 @@ export default (paramsObj) => {
     .catch((error) => {
       const { statusText, status } = error.response || {};
       const errorObj = { statusText, status, response: error.response };
-      console.error("ParamsObj: ", paramsObj, "errorObj: ", errorObj);
+      console.error("paramsObj:", paramsObj, "errorObj:", errorObj);
       throw errorObj;
     });
 };

@@ -1,8 +1,7 @@
-export const loginRequest = () => ({
-  url: "https://demo-api.it-shatle.by/auth/signIn",
-  method: "POST",
-  data: {
-    email: "",
-    password: "",
-  },
-});
+export const loginRequest = (data) => {
+  return {
+    url: "https://demo-api.it-shatle.by/auth/signIn",
+    method: "post",
+    data,
+  };
+};
