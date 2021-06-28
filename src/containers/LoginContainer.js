@@ -11,7 +11,7 @@ class LoginContainer extends React.Component {
   }
 
   OnLoginUser = (login) => {
-    console.log(login, "LOGIN");
+    console.log("LOGIN:", login);
     this.props.loginRequest(login);
   };
 

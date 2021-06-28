@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar({ handleOnChange }) {
   const classes = useStyles();
 
   return (
@@ -74,7 +74,7 @@ export default function SearchAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            SearchAppBar
+            Material-UI
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -87,6 +87,7 @@ export default function SearchAppBar() {
                 input: classes.inputInput,
               }}
               inputProps={{ "aria-label": "search" }}
+              onChange={handleOnChange}
             />
           </div>
         </Toolbar>

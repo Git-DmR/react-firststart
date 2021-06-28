@@ -11,6 +11,7 @@ export function* mySagaGeneric(action) {
     const response = yield call(ApiService, {
       dataPayload,
     });
+    console.log("RESPONCE:", response);
     const newType = action.type.replace("_REQUEST", "_SUCCESS");
     yield put({ type: newType, response, payload: action.payload });
   } catch (e) {
