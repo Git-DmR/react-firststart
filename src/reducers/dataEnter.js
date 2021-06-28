@@ -6,6 +6,7 @@ const initialState = [];
 const dataReducer = handleActions(
   {
     [action.loginRequest]: (state, action) => action.payload,
+    [action.loginSuccess]: (state, action) => action.payload,
   },
   { initialState }
 );

@@ -1,8 +1,9 @@
-import { takeEvery, all, call, put } from "redux-saga/effects";
+import { takeEvery, all, call, put, takeLatest } from "redux-saga/effects";
 import lodash from "lodash";
 import * as callMethods from "./callMethods";
 import ApiService from "../API/index";
 import _ from "lodash";
+import { push } from "react-router-redux";
 
 export function* mySagaGeneric(action) {
   const method = _.camelCase(action.type);
@@ -13,7 +14,7 @@ export function* mySagaGeneric(action) {
     });
     console.log("RESPONCE:", response);
     const newType = action.type.replace("_REQUEST", "_SUCCESS");
-    yield put({ type: newType, response, payload: action.payload });
+    yield put({ type: newType, response, payload: response });
   } catch (e) {
     const errorModel = {
       type: action.type.replace("_REQUEST", "_FAILED"),
@@ -27,8 +28,14 @@ export function* mySagaGeneric(action) {
   }
 }
 
+export function* loginSuccess(action) {
+  console.log("TUT");
+  yield put(push("/home"));
+}
+
 export function* mySagaAll(action) {
   yield takeEvery(({ type }) => /_REQUEST$/g.test(type), mySagaGeneric);
+  yield takeLatest("LOGIN_SUCCESS", loginSuccess);
 }
 
 export function* rootSaga() {
